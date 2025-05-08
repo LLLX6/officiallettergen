@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كاتب الرسائل الرسمية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #A8DADC, #F1FAEE, #457B9D);
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 48px;
+      font-weight: bold;
+      color: #1D3557;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      background-color: #fff;
+      border-radius: 15px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 900px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 150px;
+    }
+
+    .btn {
+      background-color: #1D3557;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #457B9D;
+    }
+
+    #preview {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      line-height: 1.8;
+      white-space: normal;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>كاتب الرسائل الرسمية</h1>
+  <div class="section">
+    <form id="form">
+      <label for="hijri-date">التاريخ الهجري:</label>
+      <input type="text" id="hijri-date" placeholder="مثال: 21 رمضان 1446هـ">
+
+      <label for="gregorian-date">التاريخ الميلادي:</label>
+      <input type="date" id="gregorian-date">
+
+      <label for="prefix">اللقب:</label>
+      <select id="prefix">
+        <option value="">اختر</option>
+        <option value="السيد">السيد</option>
+        <option value="السيدة">السيدة</option>
+        <option value="سعادة">سعادة</option>
+        <option value="معالي السيد">معالي السيد</option>
+        <option value="الأستاذ">الأستاذ</option>
+        <option value="الأستاذة">الأستاذة</option>
+        <option value="الدكتور">الدكتور</option>
+        <option value="الدكتورة">الدكتورة</option>
+        <option value="الشيخ">الشيخ</option>
+        <option value="القاضي">القاضي</option>
+        <option value="custom">مخصص</option>
+      </select>
+      <input id="custom-prefix" style="display:none" placeholder="أدخل اللقب المخصص">
+
+      <label for="recipient-name">اسم المستلم:</label>
+      <input type="text" id="recipient-name">
+
+      <label for="suffix">لاحقة اللقب:</label>
+      <select id="suffix">
+        <option value="">اختر</option>
+        <option value="الموقر">الموقر</option>
+        <option value="المكرم">المكرم</option>
+        <option value="المحترم">المحترم</option>
+        <option value="المحترمة">المحترمة</option>
+        <option value="الفاضلة">الفاضلة</option>
+        <option value="المبجل">المبجل</option>
+        <option value="حفظه الله">حفظه الله</option>
+        <option value="custom">مخصص</option>
+      </select>
+      <input id="custom-suffix" style="display:none" placeholder="أدخل لاحقة مخصصة">
+
+      <label for="recipient-title">وظيفة أو صفة المستلم:</label>
+      <input type="text" id="recipient-title">
+
+      <label for="predefined-topic">الموضوع:</label>
+      <select id="predefined-topic">
+        <option value="">اختر موضوعاً</option>
+        <option value="طلب وظيفة">طلب وظيفة</option>
+        <option value="طلب إجازة">طلب إجازة</option>
+        <option value="طلب توصية">طلب توصية</option>
+        <option value="طلب دعم مالي">طلب دعم مالي</option>
+        <option value="استفسار رسمي">استفسار رسمي</option>
+        <option value="شكر وتقدير">شكر وتقدير</option>
+        <option value="custom">إدخال موضوع مخصص</option>
+      </select>
+      <input type="text" id="custom-topic" style="display:none" placeholder="اكتب الموضوع المخصص هنا">
+
+      <label for="greeting">التحية:</label>
+      <select id="greeting">
+        <option value="">اختر</option>
+        <option value="السلام عليكم ورحمة الله وبركاته، وبعد،">السلام عليكم ورحمة الله وبركاته، وبعد،</option>
+        <option value="تحية طيبة، وبعد،">تحية طيبة، وبعد،</option>
+        <option value="بكل التقدير نبعث إليكم هذه الرسالة،">بكل التقدير نبعث إليكم هذه الرسالة،</option>
+        <option value="يسرنا أن نرفع إلى مقامكم الكريم،">يسرنا أن نرفع إلى مقامكم الكريم،</option>
+        <option value="نتشرف بأن نرفع إلى مقامكم،">نتشرف بأن نرفع إلى مقامكم،</option>
+        <option value="نرفع إلى علمكم الكريم،">نرفع إلى علمكم الكريم،</option>
+        <option value="مع أطيب التحيات، نبعث إليكم بما يلي،">مع أطيب التحيات، نبعث إليكم بما يلي،</option>
+        <option value="أسعد الله أوقاتكم بكل خير،">أسعد الله أوقاتكم بكل خير،</option>
+        <option value="custom">مخصص</option>
+      </select>
+      <input id="custom-greeting" style="display:none" placeholder="أدخل التحية المخصصة">
+
+      <label for="body">نص الرسالة:</label>
+      <textarea id="body"></textarea>
+
+      <label for="closing">الخاتمة:</label>
+      <select id="closing">
+        <option value="">اختر</option>
+        <option value="وتفضلوا بقبول فائق الاحترام والتقدير.">وتفضلوا بقبول فائق الاحترام والتقدير.</option>
+        <option value="وتفضلوا بقبول وافر الاحترام.">وتفضلوا بقبول وافر الاحترام.</option>
+        <option value="مع خالص الشكر والتقدير.">مع خالص الشكر والتقدير.</option>
+        <option value="مع أطيب التحيات والتمنيات بدوام التوفيق.">مع أطيب التحيات والتمنيات بدوام التوفيق.</option>
+        <option value="وتقبلوا وافر التحية والاحترام.">وتقبلوا وافر التحية والاحترام.</option>
+        <option value="مع صادق الاحترام والتقدير.">مع صادق الاحترام والتقدير.</option>
+        <option value="وتفضلوا بقبول جزيل الشكر وخالص التقدير.">وتفضلوا بقبول جزيل الشكر وخالص التقدير.</option>
+        <option value="وتفضلوا بقبول أسمى عبارات الشكر والامتنان.">وتفضلوا بقبول أسمى عبارات الشكر والامتنان.</option>
+        <option value="custom">مخصص</option>
+      </select>
+      <input id="custom-closing" style="display:none" placeholder="أدخل الخاتمة المخصصة">
+
+      <label for="sender-name">اسم المرسل:</label>
+      <input type="text" id="sender-name">
+
+      <label for="sender-title">وظيفة المرسل:</label>
+      <input type="text" id="sender-title">
+
+      <button type="button" class="btn" onclick="generateMessage()">إنشاء الرسالة</button>
+      <button type="reset" class="btn">مسح النموذج</button>
+    </form>
+
+    <div id="preview"></div>
+
+    <div id="actions" style="display:none">
+      <button class="btn" onclick="copyMessage()">نسخ الرسالة</button>
+      <button class="btn" onclick="downloadMessage()">تحميل</button>
+      <button class="btn" onclick="printMessage()">طباعة</button>
+    </div>
+  </div>
+
+  <script>
+const predefinedMessages = {
+  "طلب وظيفة": [
+    "أتشرّف برفع طلبي هذا إلى مقامكم الكريم، ملتمسًا من لدنكم التفضّل بالنظر في رغبتي في الانضمام إلى مؤسستكم العريقة.\nالتي طالما اقترنت سمعتها بالتميز والريادة، في مجالٍ ينسجم مع تطلعاتي وقدراتي العلمية والعملية.\nوإني إذ أتقدّم بهذا الطلب، فإيمانًا مني بأنني أمتلك من المؤهلات والخبرات ما يؤهّلني للقيام بمهام الوظيفة بكفاءة واقتدار، فضلًا عن حرصي التام على التطور المستمر، والعمل ضمن منظومة تقوم على القيم والمهنية العالية.\nأرفق هذه الرسالة سيرتي الذاتية والمستندات ذات الصلة، آملاً أن يتسنى لي نيل فرصة المقابلة الشخصية، لأعرض ما لديّ من طموح وجدية واستعداد لخدمة أهداف مؤسستكم الموقّرة."
+  ],
+  "طلب إجازة": [
+    "أرفع إلى مقامكم الكريم هذا الطلب راجيًا منكم التكرّم بالموافقة على منحي إجازة تمتد من تاريخ (...) إلى تاريخ (...)، وذلك نظراً لظرف (...)، الذي يستوجب مني التغيب خلال هذه المدة.\nوإني إذ ألتمس عطفكم الكريم، أؤكد حرصي البالغ على أداء جميع المهام المناطة بي قبل حلول الإجازة، أو التنسيق اللازم لضمان سير العمل دون أدنى خلل أو تأخير، بما يحفظ انسيابية الأداء واستقراره.\nراجياً من الله ثم منكم التفضّل بقبول طلبي هذا.\nوممتنًّا لتعاونكم وتفهّمكم المعهود."
+  ],
+  "طلب توصية": [
+    "فإني أتقدّم إليكم بهذا الطلب راجيًا من كريم عطائكم منحي خطاب توصية يُبيّن ما شهدتموه من سيرتي وسلوكي، وما لمستموه من جديتي واجتهادي، خلال الفترة التي جمعتني بكم في الإطار المهني/الأكاديمي.\nوإني لعلى يقينٍ بأن شهادتكم – بما تمثّله من مصداقية واعتبار – سيكون لها الأثر الإيجابي في تدعيم مسيرتي القادمة، سواء في مواصلة التحصيل العلمي، أو التقدّم لمجالات العمل المختلفة.\nأثمّن لكم ما تبذلونه من جهود في دعم من يستحق، وأرجو أن أكون عند حسن ظنّكم.\nداعيًا المولى أن يجزيكم خير الجزاء، ويزيدكم رفعة وتمكينًا."
+  ],
+  "طلب دعم مالي": [
+    "فإني أتقدّم إلى كريم جهاتكم بهذا الطلب، أرجو فيه النظر بعين العطف والمساندة إلى ظروفي المادية الراهنة، التي أثقلت كاهلي وأعجزتني عن الوفاء ببعض الالتزامات الضرورية.\nرغم ما أبذله من جهد ومثابرة، ولثقتي بمكانة مؤسستكم المباركة في دعم المحتاجين، ومواقفها الإنسانية المشهودة.\nعقدت العزم على التوجّه إليكم بهذا الرجاء، آملاً أن أجد منكم يدًا حانية، تعينني على اجتياز هذه المرحلة الحرجة.\nأعدكم بأن يكون هذا الدعم في موضعه الصحيح، كما أنني مستعد لتقديم ما يلزم من مستندات أو توضيحات تدعم موقفي."
+  ],
+  "استفسار رسمي": [
+    "فإني أرفع إلى كريم عنايتكم هذا الخطاب، بغية الاستفسار حول موضوع (...)، راجيًا منكم التفضّل بإفادتي بالمعلومات الرسمية الدقيقة المتعلقة به.\nلما لذلك من أثر جوهري في استكمال بعض الإجراءات، أو اتخاذ قرارات تتطلب وضوحًا تامًا في المعطيات.\nوإنني إذ ألتمس منكم الرد على هذا الاستفسار، فإني على استعداد لتقديم أي متطلبات أو مستندات تُسهم في تسهيل الرد، أو توضيح جوانب الموضوع.\nمع خالص شكري وامتناني لتعاونكم المعهود، وحرصكم على الشفافية والدقة."
+  ],
+  "شكر وتقدير": [
+    "فإني أتقدّم إليكم بأسمى عبارات الشكر، وأصدق معاني التقدير، لما لمسته منكم من دعمٍ كريم، وجهدٍ مخلص، كان لهما بالغ الأثر في (...)، وأسهم في تذليل العقبات وتحقيق الأهداف المنشودة.\nلقد تجلّت في مواقفكم قيم المسؤولية، وروح المبادرة، وصدق الانتماء، وهو ما يستوجب مني الوقوف وقفة وفاء، أعبّر فيها عن امتناني العميق، وتقديري الكبير لعطائكم الذي لا يُنتظر عليه جزاءٌ ولا شكور.\nأسأل الله أن يجعل ما قدّمتموه في موازين حسناتكم، وأن يُديم عليكم نعم التوفيق والسداد."
+  ]
+};
+
+let messageIndex = {};
+
+    document.getElementById('predefined-topic').addEventListener('change', function () {
+      const topic = this.value;
+      const customInput = document.getElementById('custom-topic');
+      const bodyField = document.getElementById('body');
+      if (topic === 'custom') {
+        customInput.style.display = 'block';
+        bodyField.value = '';
+      } else {
+        customInput.style.display = 'none';
+        const messages = predefinedMessages[topic];
+        if (messages && messages.length > 0) {
+          const index = Math.floor(Math.random() * messages.length);
+const selectedTopic = document.getElementById('predefined-topic').value;
+if (selectedTopic && predefinedMessages[selectedTopic]) {
+  if (!messageIndex[selectedTopic]) messageIndex[selectedTopic] = 0;
+  const messages = predefinedMessages[selectedTopic];
+  bodyField.value = messages[messageIndex[selectedTopic] % messages.length];
+  messageIndex[selectedTopic]++;
+}
+        }
+      }
+    });
+
+    ['prefix', 'suffix', 'greeting', 'closing'].forEach(id => {
+      document.getElementById(id).addEventListener('change', function () {
+        const customInput = document.getElementById(`custom-${id}`);
+        customInput.style.display = this.value === 'custom' ? 'block' : 'none';
+      });
+    });
+
+    function getValue(selectId, customId) {
+      const select = document.getElementById(selectId);
+      if (select.value === 'custom') {
+        return document.getElementById(customId).value;
+      }
+      return select.value;
+    }
+
+    function generateMessage() {
+      const hijri = document.getElementById('hijri-date').value;
+      const gregorian = document.getElementById('gregorian-date').value;
+      const prefix = getValue('prefix', 'custom-prefix');
+      const name = document.getElementById('recipient-name').value;
+      const suffix = getValue('suffix', 'custom-suffix');
+      const title = document.getElementById('recipient-title').value;
+      const topic = document.getElementById('predefined-topic').value;
+      const subject = topic === 'custom' ? document.getElementById('custom-topic').value : topic;
+      const greeting = getValue('greeting', 'custom-greeting');
+      const body = document.getElementById('body').value;
+      const closing = getValue('closing', 'custom-closing');
+      const sender = document.getElementById('sender-name').value;
+      const senderTitle = document.getElementById('sender-title').value;
+
+      const message = `
+<div style="text-align: right; line-height: 1.6;">
+  <div><strong>التاريخ: ${hijri}</strong></div>
+  <div><strong>الموافق: ${gregorian}</strong></div>
+  <div><strong>${prefix ? prefix + ' ' : ''}${name}${suffix ? ' ' + suffix : ''}</strong></div>
+  <div>${title}</div>
+</div>
+
+<div style="text-align: center; font-weight: bold; margin: 8px 0;">
+  الموضوع: <u>${subject}</u>
+</div>
+
+<div style="text-align: right;">${greeting}</div>
+
+<div style="text-align: justify; white-space: pre-wrap;">${body}</div>
+
+<div style="text-align: right; margin-top: 10px;">${closing}</div>
+
+<div style="text-align: left; margin-top: 20px;">
+  <strong>${sender}</strong><br>
+  ${senderTitle}
+</div>
+      `;
+
+      document.getElementById('preview').innerHTML = message;
+      document.getElementById('actions').style.display = 'block';
+    }
+
+    function copyMessage() {
+      navigator.clipboard.writeText(document.getElementById('preview').innerText);
+      alert('تم نسخ الرسالة.');
+    }
+
+    function downloadMessage() {
+      const blob = new Blob([document.getElementById('preview').innerText], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'الرسالة.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function printMessage() {
+      const w = window.open();
+      w.document.write(`<html dir='rtl'><body><pre style='font-family: Arial;'>${document.getElementById('preview').innerHTML}</pre></body></html>`);
+      w.print();
+      w.close();
+    }
+  </script>
+</body>
+
+</html>
